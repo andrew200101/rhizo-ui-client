@@ -8,7 +8,6 @@ import UICard from '../../ui-kit/core/UICard';
 
 import { ReactComponent as HeroImage } from '../../media/image/sign-in-presentation.svg';
 import UIButton from '../../ui-kit/core/UIButton';
-import { Device } from '../../settings/Device';
 import UIForm from '../../ui-kit/form/UIForm';
 import UICheckBox from '../../ui-kit/form/UICheckBox';
 // import { ReactComponent as InputMailIcon } from '../../media/image/input-mail-icon.svg';
@@ -16,25 +15,8 @@ import UICheckBox from '../../ui-kit/form/UICheckBox';
 import UITextField from '../../ui-kit/form/UITextField';
 import UIPasswordField from '../../ui-kit/form/UIPasswordField';
 import UIBox from '../../ui-kit/layout/UIBox';
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 124px;
-    justify-content: space-around;
-    width: 100%;
-
-    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
-        padding-top: 84px;
-    }
-
-    @media (max-width: ${Device.mobile}px) {
-        padding-top: 46px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-`;
+import AuthContentWrapper from '../../widget/AuthContentWrapper';
+import Presentation from '../../widget/Presentation';
 
 const Title = styled.h4`
     display: flex;
@@ -73,35 +55,6 @@ const LinkWrapper = styled.div`
     }
 `;
 
-const InfoWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 480px;
-
-    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
-        display: none;
-    }
-
-    @media (max-width: ${Device.mobile}px) {
-        display: none;
-    }
-
-    .caption {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 40px;
-        line-height: 56px;
-        letter-spacing: 0.01em;
-        color: #2d2d2d;
-        margin: 0px 0px 34px 0px;
-    }
-
-    .image {
-    }
-`;
-
 interface IPayload {
     email: string;
     password: string;
@@ -127,13 +80,9 @@ const LoginPage = (props) => {
     });
     return (
         <Page name="login">
-            <Wrapper>
-                <InfoWrapper>
-                    <h2 className="caption">Discover the Best Tutors Around the World</h2>
-                    <div className="image">
-                        <HeroImage />
-                    </div>
-                </InfoWrapper>
+            <AuthContentWrapper>
+                <Presentation title="Discover the Best Tutors Around the World" image={<HeroImage />} />
+
                 <UICard>
                     <Title>Sign in to Rhizo</Title>
 
@@ -170,7 +119,7 @@ const LoginPage = (props) => {
                         </UIBox>
                     </UIForm>
                 </UICard>
-            </Wrapper>
+            </AuthContentWrapper>
         </Page>
     );
 };

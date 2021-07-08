@@ -1,7 +1,7 @@
 export const Margin = {
-    xs: '8px',
-    sm: '8px',
-    md: '16px',
-    lg: '16px',
-    xl: '24px',
+    xs: 8,
+    sm: 10,
+    md: 15,
+    lg: 20,
+    xl: 24,
 };

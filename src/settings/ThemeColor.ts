@@ -1,6 +1,6 @@
 export const ThemeColor = {
     basic: '#2BBBAD',
-    primary: '#4285F4',
+    primary: '#5EC69D',
     ascent: '#aa66cc',
     elegant: '#2E2E2E',
     stylish: '#4B515D',
