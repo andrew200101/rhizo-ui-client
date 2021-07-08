@@ -1,6 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { Device } from '../../settings/Device';
+import { Margin } from '../../settings/Margin';
+import { Padding } from '../../settings/Padding';
 
 const Wrapper = styled.div<Partial<IProps>>`
     display: flex;
@@ -16,9 +18,17 @@ const Wrapper = styled.div<Partial<IProps>>`
     border-radius: 15px;
     height: fit-content;
 
+    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
+        padding: ${Padding.md}px;
+        margin: ${Margin.md}px;
+        max-width: 500px;
+        width: 100%;
+    }
+
     @media (max-width: ${Device.mobile}px) {
-        width: calc(100vw - 20px);
-        padding: 20px 20px 20px;
+        padding: ${Padding.sm}px;
+        margin: ${Margin.sm}px;
+        width: 100%;
     }
 
     ${(props) => {

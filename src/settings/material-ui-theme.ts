@@ -1,9 +1,9 @@
 import { red } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = (createMuiTheme as any)({
     typography: {
-        fontFamily: 'Avenir, Roboto, sans-serif',
+        fontFamily: 'Roboto, sans-serif',
     },
     // overrides: {
     //     MuiCssBaseline: {
@@ -13,11 +13,17 @@ const theme = createMuiTheme({
     //     },
     // },
     palette: {
+        type: 'light',
+        text: {
+            primary: '#686868',
+            secondary: '#A4A4A4',
+        },
         primary: {
-            main: '#556cd6',
+            main: '#5EC69D',
+            contrastText: '#ffffff',
         },
         secondary: {
-            main: '#19857b',
+            main: '#ff0000',
         },
         error: {
             main: red.A400,
@@ -25,6 +31,40 @@ const theme = createMuiTheme({
         background: {
             default: '#fff',
         },
+    },
+
+    overrides: {
+        MuiPickersToolbar: {
+            toolbar: {
+                backgroundColor: '#5EC69D',
+            },
+        },
+        MuiPickersCalendarHeader: {
+            root: {
+                // backgroundColor: lightBlue.A200,
+                // color: "white",
+            },
+        },
+        MuiPickersDay: {
+            day: {
+                color: '#495057',
+                // border: '1px solid #e9ecef',
+                // borderRadius: 0,
+                fontSize: 12,
+            },
+            current: {
+                color: '#5EC69D',
+            },
+            daySelected: {
+                color: '#ffffff',
+                backgroundColor: '#5EC69D',
+                '&:hover': {
+                    color: '#ffffff',
+                    backgroundColor: '#5EC69D',
+                },
+            },
+        },
+        MuiDialogActions: {},
     },
 });
 

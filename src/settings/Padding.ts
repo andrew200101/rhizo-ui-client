@@ -8,8 +8,8 @@ export interface IPadding {
 
 export const Padding: IPadding = {
     xs: 8,
-    sm: 8,
-    md: 16,
-    lg: 16,
-    xl: 24,
+    sm: 20,
+    md: 40,
+    lg: 40,
+    xl: 40,
 };

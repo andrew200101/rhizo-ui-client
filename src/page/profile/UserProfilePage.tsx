@@ -7,31 +7,21 @@ import * as Yup from 'yup';
 import Page from '../common/Page';
 import UICard from '../../ui-kit/core/UICard';
 
-import { ReactComponent as HeroImage } from '../../media/image/student-info-presentation.svg';
+import { ReactComponent as HeroImage } from '../../media/image/profile-info-presentation.svg';
 import UIButton from '../../ui-kit/core/UIButton';
 import { Device } from '../../settings/Device';
 import UIForm from '../../ui-kit/form/UIForm';
+// import { ReactComponent as InputMailIcon } from '../../media/image/input-mail-icon.svg';
+// import { ReactComponent as InputEditIcon } from '../../media/image/input-edit-icon.svg';
+import UITextField from '../../ui-kit/form/UITextField';
 import UIBox from '../../ui-kit/layout/UIBox';
-import UIAutocomplete from '../../ui-kit/form/UIAutoComplete';
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 124px;
-    justify-content: space-around;
-    width: 100%;
-
-    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
-        padding-top: 84px;
-    }
-
-    @media (max-width: ${Device.mobile}px) {
-        padding-top: 46px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-`;
+import UIHint from '../../ui-kit/core/UIHint';
+import UILink from '../../ui-kit/core/UILink';
+import UIStaticField from '../../ui-kit/form/UIStaticField';
+import UISelectField from '../../ui-kit/form/UISelectField';
+import UIDatePicker from '../../ui-kit/form/UIDatePicker';
+import Presentation from '../../widget/Presentation';
+import AuthContentWrapper from '../../widget/AuthContentWrapper';
 
 const Title = styled.h4`
     display: flex;
@@ -101,101 +91,9 @@ const ConfirmWrapper = styled.div`
     }
 `;
 
-const InfoWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 480px;
-
-    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
-        display: none;
-    }
-
-    @media (max-width: ${Device.mobile}px) {
-        display: none;
-    }
-
-    .caption {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 40px;
-        line-height: 56px;
-        letter-spacing: 0.01em;
-        color: #2d2d2d;
-        margin: 0px 0px 34px 0px;
-    }
-
-    .image {
-    }
-`;
-
-const majorList = [
-    {
-        value: 'Economics',
-        label: 'Economics',
-    },
-    {
-        value: 'Mathematics',
-        label: 'Mathematics',
-    },
-    {
-        value: 'Business',
-        label: 'Business',
-    },
-    {
-        value: 'Agriculture',
-        label: 'Agriculture',
-    },
-    {
-        value: 'Arts',
-        label: 'Arts',
-    },
-    {
-        value: 'Communications',
-        label: 'Communications',
-    },
-    {
-        value: 'Community',
-        label: 'Community',
-    },
-    {
-        value: 'Science',
-        label: 'Science',
-    },
-    {
-        value: 'Engineering',
-        label: 'Engineering',
-    },
-    {
-        value: 'Health Administration',
-        label: 'Health Administration',
-    },
-    {
-        value: 'Health Sciences & Technologies',
-        label: 'Health Sciences & Technologies',
-    },
-    {
-        value: 'Philosophy',
-        label: 'Philosophy',
-    },
-    {
-        value: 'Repair, Production & Construction',
-        label: 'Repair, Production & Construction',
-    },
-    {
-        value: 'Social Sciences & Law',
-        label: 'Social Sciences & Law',
-    },
-    {
-        value: 'Sciences Biological & Physical',
-        label: 'Sciences Biological & Physical',
-    },
-];
-
 const educationLevelList = [
     {
-        value: 'Undergraduate',
+        value: 'undergraduate',
         label: 'Undergraduate',
     },
     {
@@ -227,7 +125,7 @@ const FormSchema = Yup.object().shape({
     year: Yup.string().required('Required'),
 });
 
-const StudentInfoPage = (props) => {
+const UserProfilePage = (props) => {
     const [isTutor, setIsTutor] = useState(true);
     const [selectedProfile, setSelectedProfile] = useState('both');
 
@@ -243,35 +141,60 @@ const StudentInfoPage = (props) => {
             }, 500);
         },
     });
-
     return (
-        <Page name="student-info">
-            <Wrapper>
-                <InfoWrapper>
-                    <h2 className="caption">Discover the Best Tutors Around the World</h2>
-                    <div className="image">
-                        <HeroImage />
-                    </div>
-                </InfoWrapper>
+        <Page name="profile-user">
+            <AuthContentWrapper>
+                <Presentation title="Discover the Best Tutors Around the World" image={<HeroImage />} />
                 <UICard flat={true}>
-                    <Title>Student information</Title>
+                    <Title>Welcome to Rhizo, Andrew! Please provide your information</Title>
 
                     <UIForm formik={formik}>
-                        <UIAutocomplete
-                            id="majors"
-                            name="majors"
-                            label="Select your major(s)"
-                            placeholder="Select major"
-                            options={majorList}
-                        />
                         <UIBox direction="column">
+                            <UIStaticField
+                                id="profile"
+                                name="profile"
+                                value={profileList[selectedProfile]}
+                                label="Selected profile"
+                            />
+                            <UIStaticField id="email" name="email" value={['abc@domain.com']} label="Email" />
+
+                            {isTutor && (
+                                <>
+                                    <UIBox justifyContent="flex-end">
+                                        <UILink label="Register as a student only" />
+                                    </UIBox>
+                                    <ConfirmWrapper>
+                                        <h4>Confirmation educational institution</h4>
+                                        <span>
+                                            This email is to verify that you attend your selected institution. We will
+                                            send you a verification link
+                                        </span>
+                                    </ConfirmWrapper>
+                                    <UIStaticField
+                                        id="emailConf"
+                                        name="emailConf"
+                                        value={['abc@domain.com']}
+                                        label=""
+                                    />
+                                    <UIHint text="You must belong to an institution currently supported at Rhizo." />
+                                </>
+                            )}
+
+                            <UISelectField
+                                id="educationLevel"
+                                name="educationLevel"
+                                label="Education level"
+                                placeholder="Select education level"
+                                options={educationLevelList}
+                            ></UISelectField>
+                            <UIDatePicker id="dob" name="dob" label="Date of birth" />
                             <UIButton label="Continue" />
                         </UIBox>
                     </UIForm>
                 </UICard>
-            </Wrapper>
+            </AuthContentWrapper>
         </Page>
     );
 };
 
-export default StudentInfoPage;
+export default UserProfilePage;

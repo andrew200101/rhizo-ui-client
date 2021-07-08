@@ -28,13 +28,14 @@ export const InputWrapper = styled.div`
 
     > input {
         &:focus {
-            box-shadow: rgba(94, 198, 157, 0.25) 0 0 0 2px;
-            border-color: rgba(94, 198, 157, 1);
+            /* box-shadow: rgba(94, 198, 157, 0.25) 0 0 0 2px;
+            border-color: rgba(94, 198, 157, 1); */
+            border-color: #5ec69d;
         }
     }
 `;
 
-export const IconWrapper = styled.div<any>`
+const IconWrapper = styled.div<any>`
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -104,7 +105,7 @@ export const SInput = styled.input`
         if (props.type === 'password') {
             return css`
                 font-family: caption;
-                font-size: 24px;
+                /* font-size: 24px; */
                 color: #2d2d2d;
             `;
         }

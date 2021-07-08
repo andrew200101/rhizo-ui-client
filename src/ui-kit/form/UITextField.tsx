@@ -26,8 +26,9 @@ const InputWrapper = styled.div`
 
     > input {
         &:focus {
-            box-shadow: rgba(94, 198, 157, 0.25) 0 0 0 2px;
-            border-color: rgba(94, 198, 157, 1);
+            /* box-shadow: rgba(94, 198, 157, 0.25) 0 0 0 2px; */
+            /* border-color: rgba(94, 198, 157, 1); */
+            border-color: #5ec69d;
         }
     }
 `;

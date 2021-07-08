@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import FourNotFourPage from './page/404/FourNotFourPage';
 import LoginPage from './page/auth/LoginPage';
 import SignUpPage from './page/auth/SignUpPage';
-import ProfileInfoPage from './page/profile/ProfileInfoPage';
-import StudentInfoPage from './page/profile/StudentInfoPage';
+import UserProfilePage from './page/profile/UserProfilePage';
+import StudentProfilePage from './page/profile/StudentProfilePage';
 
 const App = () => {
     return (
@@ -24,12 +24,12 @@ const App = () => {
                         <SignUpPage />
                     </Route>
 
-                    <Route exact path="/profile/info">
-                        <ProfileInfoPage />
+                    <Route exact path="/profile/user">
+                        <UserProfilePage />
                     </Route>
 
-                    <Route exact path="/student/info">
-                        <StudentInfoPage />
+                    <Route exact path="/profile/student">
+                        <StudentProfilePage />
                     </Route>
 
                     <Route path="*">

@@ -20,25 +20,8 @@ import UISegmentButton from '../../ui-kit/form/UISegmentButton';
 import UIHint from '../../ui-kit/core/UIHint';
 import UILink from '../../ui-kit/core/UILink';
 import UISpacer from '../../ui-kit/core/UISpacer';
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 124px;
-    justify-content: space-around;
-    width: 100%;
-
-    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
-        padding-top: 84px;
-    }
-
-    @media (max-width: ${Device.mobile}px) {
-        padding-top: 46px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-`;
+import AuthContentWrapper from '../../widget/AuthContentWrapper';
+import Presentation from '../../widget/Presentation';
 
 const Title = styled.h4`
     display: flex;
@@ -106,35 +89,6 @@ const NameGroupWrapper = styled.div`
     }
 `;
 
-const InfoWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 480px;
-
-    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
-        display: none;
-    }
-
-    @media (max-width: ${Device.mobile}px) {
-        display: none;
-    }
-
-    .caption {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 40px;
-        line-height: 56px;
-        letter-spacing: 0.01em;
-        color: #2d2d2d;
-        margin: 0px 0px 34px 0px;
-    }
-
-    .image {
-    }
-`;
-
 interface IPayload {
     userType: number;
     email: string;
@@ -168,13 +122,8 @@ const SignUpPage = (props) => {
     });
     return (
         <Page name="signup">
-            <Wrapper>
-                <InfoWrapper>
-                    <h2 className="caption">Student Mentors at Your Fingertips</h2>
-                    <div className="image">
-                        <HeroImage />
-                    </div>
-                </InfoWrapper>
+            <AuthContentWrapper>
+                <Presentation title="Student Mentors at Your Fingertips" image={<HeroImage />} />
                 <UICard>
                     <Title>Register with Rhizo</Title>
 
@@ -244,7 +193,7 @@ const SignUpPage = (props) => {
                         </UIBox>
                     </UIForm>
                 </UICard>
-            </Wrapper>
+            </AuthContentWrapper>
         </Page>
     );
 };

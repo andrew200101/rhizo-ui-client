@@ -1,17 +1,52 @@
-import React, { FC, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { FC, useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
 
-import { ReactComponent as Logo } from '../../media/image/logo.svg';
+import { ReactComponent as Logo } from '../../media/image/logo-white.svg';
+import { Depth } from '../../settings/Depth';
 import { Device } from '../../settings/Device';
+import { Layout } from '../../settings/Layout';
+import { ThemeColor } from '../../settings/ThemeColor';
 import UIButton from '../../ui-kit/core/UIButton';
 
-const Wrapper = styled.nav`
+const Wrapper = styled.nav<any>`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    height: 76px;
+    height: ${Layout.header.height.laptop}px;
+
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    z-index: ${Depth.appBar};
+    transition: background-color 0.3s linear, box-shadow 0.3s linear;
+
+    ${(props) => {
+        if (props.shadow) {
+            return css`
+                @media (max-width: ${Device.tablet}px) {
+                    background-color: #ffffff;
+                    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+                }
+            `;
+        }
+        return null;
+    }}
+
+    /* @media (max-width: ${Device.laptop}px) {
+        background-color: #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    } */
+
+    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
+        height: ${Layout.header.height.tablet}px;
+    }
+
+    @media (max-width: ${Device.mobile}px) {
+        height: ${Layout.header.height.mobile}px;
+    }
 `;
 const LeftWrapper = styled.div`
     display: flex;
@@ -51,7 +86,33 @@ const LogoWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 76px;
+    margin-left: 40px;
+    margin-top: 40px;
+
+    @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
+        margin-left: 0px;
+        margin-top: 0px;
+        width: 80px;
+
+        & > svg {
+            fill: ${ThemeColor.primary};
+            > path {
+                fill: ${ThemeColor.primary};
+            }
+        }
+    }
+
+    @media (max-width: ${Device.mobile}px) {
+        margin-left: 0px;
+        margin-top: 0px;
+        width: 80px;
+        & > svg {
+            fill: ${ThemeColor.primary};
+            > path {
+                fill: ${ThemeColor.primary};
+            }
+        }
+    }
 `;
 
 interface IProps {
@@ -59,11 +120,28 @@ interface IProps {
 }
 
 const Header: FC<IProps> = ({ page }) => {
-    // const history = useHistory();
+    const [shadow, setShadow] = useState(false);
 
-    useEffect(() => {}, []);
+    //   const history = useHistory();
+
+    const handleScroll = () => {
+        // const scroll = document.documentElement.scrollTop;
+        const scroll = document.getElementById('content').scrollTop;
+
+        if (scroll > 64) {
+            setShadow(true);
+        } else {
+            setShadow(false);
+        }
+    };
+
+    useEffect(() => {
+        // window.onscroll = () => handleScroll();
+        document.getElementById('content').addEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <Wrapper>
+        <Wrapper shadow={shadow}>
             <LeftWrapper>
                 <LogoWrapper>
                     <Logo />
