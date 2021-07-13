@@ -1,5 +1,5 @@
 import { takeLatest } from 'redux-saga/effects';
-import { MenuActionMap } from '../action/MenuAction';
+import { MenuActionMap } from '../state/MenuState';
 import { MenuSaga } from './MenuSaga';
 
 export function* SagaWatcher() {

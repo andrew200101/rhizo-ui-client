@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { IMenu } from '../domain/IMenu';
-import { RootState } from '../reducer';
+import { RootState } from '../state';
 
 export const useMenus = () => {
     const menus: IMenu[] | undefined = useSelector<RootState, IMenu[]>((state) => state.menuState.data);

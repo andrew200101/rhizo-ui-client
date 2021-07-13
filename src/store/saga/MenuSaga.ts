@@ -1,8 +1,8 @@
 import { call, put } from 'redux-saga/effects';
 import { IMenu } from '../domain/IMenu';
-import { MenuService } from '../service/MenuService';
-import { requestMenuListSuccess, requestMenuListError } from '../action/MenuAction';
 import { ArrayUtil } from '../../util/array-util/index';
+import { HttpService } from '../service/HttpService';
+import { requestMenuListError, requestMenuListSuccess } from '../state/MenuState';
 
 export const refineMenuData = (menuData) => {
     let list: IMenu[] = [];
@@ -17,7 +17,7 @@ export const refineMenuData = (menuData) => {
 
 function* GetMenuWorker(action) {
     try {
-        const response = yield call(MenuService.GetMenuList);
+        const response = yield call(HttpService.get, 'menu.json');
         if (response.status >= 200 && response.status < 300) {
             const { data } = response;
             const menus = refineMenuData(data);

@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, Middleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { SagaWatcher } from './saga/SagaWatcher';
-import reducer from './reducer';
+import reducer from './state';
 
 const middleware: Array<Middleware> = [];
 

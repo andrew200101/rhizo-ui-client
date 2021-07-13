@@ -1,7 +1,17 @@
-import { Reducer } from 'react';
-import { PageActionMap } from '../action/PageAction';
+import { Reducer } from 'redux';
+import { AppAction, IAction } from '../core';
 import { IHeaderNavContext } from '../domain/IHeaderNavContext';
-import { IAction } from '../action/index';
+
+// --- Action Type--- //
+export const PageActionMap = {
+    OPEN_DRAWER: '@@page/open-drawer',
+    CLOSE_DRAWER: '@@page/close-drawer',
+};
+
+// --- Action Creator --- //
+export const createOpenDrawerAction = () => AppAction.create(PageActionMap.OPEN_DRAWER);
+
+export const createCloseDrawerAction = () => AppAction.create(PageActionMap.CLOSE_DRAWER);
 
 export type PageState = Readonly<{
     isOpen: boolean;
