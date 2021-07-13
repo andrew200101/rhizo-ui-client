@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import FourNotFourPage from './page/404/FourNotFourPage';
 import LoginPage from './page/auth/LoginPage';
 import SignUpPage from './page/auth/SignUpPage';
