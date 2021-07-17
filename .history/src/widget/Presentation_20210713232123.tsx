@@ -10,7 +10,7 @@ const InfoWrapper = styled.div`
     align-items: center;
     width: 30%;
     /* max-width: 565px; */
-    background: #5ec69d;
+    background: #6FCFAA;
     padding-top: 192px;
     position: fixed;
     left: 0px;
@@ -27,18 +27,19 @@ const InfoWrapper = styled.div`
 const Title = styled.h2`
     font-style: normal;
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 45px;
     line-height: 50px;
     letter-spacing: 0.01em;
     color: #ffffff;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 34px 0px;
     width: 80%;
 `;
 
 const ImageWrapper = styled.div`
     display: flex;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+
     padding: 0px 5% 0px 5%;
     margin-top: 0px;
     margin-bottom: 24px;

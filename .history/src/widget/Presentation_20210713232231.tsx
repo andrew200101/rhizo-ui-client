@@ -27,7 +27,7 @@ const InfoWrapper = styled.div`
 const Title = styled.h2`
     font-style: normal;
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 45px;
     line-height: 50px;
     letter-spacing: 0.01em;
     color: #ffffff;

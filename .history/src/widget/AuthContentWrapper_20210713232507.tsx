@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     padding-top: 124px;
     justify-content: center;
     width: 70%;
-    margin-left: 30%;
+    margin-left: 40%;
 
     @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
         padding-top: 42px;

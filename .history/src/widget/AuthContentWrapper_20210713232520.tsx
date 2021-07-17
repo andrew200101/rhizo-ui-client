@@ -7,8 +7,8 @@ const Wrapper = styled.div`
     flex-direction: row;
     padding-top: 124px;
     justify-content: center;
-    width: 70%;
-    margin-left: 30%;
+    width: 60%;
+    margin-left: 40%;
 
     @media (max-width: ${Device.tablet}px) and (min-width: ${Device.mobile + 1}px) {
         padding-top: 42px;
