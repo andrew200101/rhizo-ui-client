@@ -10,7 +10,6 @@ const InputWrapper = styled.div`
     position: relative;
     border: none;
     display: flex;
-    width: 100%;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
@@ -23,6 +22,10 @@ const InputWrapper = styled.div`
     /* border: 1px solid #e5e5e5; */
     box-sizing: border-box;
     border-radius: 10px;
+    flex: none;
+    flex-grow: 0;
+    align-self: stretch;
+    margin: 10px 0px;
 
     > input {
         &:focus {

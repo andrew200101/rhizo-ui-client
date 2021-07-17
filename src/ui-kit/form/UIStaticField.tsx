@@ -51,7 +51,7 @@ const UIStaticField: FC<IProps> = (props) => {
             {label && <UILabel htmlFor={id}>{label}</UILabel>}
             {value &&
                 value.map((x) => (
-                    <FieldWrapper count={value.length}>
+                    <FieldWrapper key={`ui-static-fw-${x}`} count={value.length}>
                         <Text>{x}</Text>
                     </FieldWrapper>
                 ))}

@@ -11,40 +11,46 @@ import UIFormControl from './UIFormControl';
 import { UILabel } from './UILabel';
 import UIError from './UIError';
 
-import { ReactComponent as ArrowIcon } from '../../media/image/select-arrow-icon.svg';
-
 interface IOption {
     label: string;
     value: number;
 }
 
 const TagInputWrapper = styled('div')<any>`
-    width: 100%;
-    /* border: 1px solid #d9d9d9; */
+    flex: none;
+    align-self: stretch;
+    border: 1px solid #d9d9d9;
     background-color: #fff;
-    border-radius: 4px;
     display: flex;
     flex-wrap: wrap;
-
     border-radius: 16px;
-    background: #f0f0f0;
-    /* border: 1px solid #e5e5e5; */
     box-sizing: border-box;
     border-radius: 10px;
-    padding: ${(props) => (props.count ? '15px 15px 5px 15px' : '0px')};
-    margin-top: ${(props) => (props.count ? '4px' : '0px')};
-    height: ${(props) => (props.count ? 'auto' : '0px')};
+    padding: 10px;
+    margin-top: 10px;
     max-height: 168px;
     overflow: auto;
 
-    /* &:hover {
-        border-color: #40a9ff;
+    &:hover {
+        border-color: rgba(94, 198, 157, 1);
     }
 
     &.focused {
-        border-color: #40a9ff;
-        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
-    } */
+        border-color: rgba(94, 198, 157, 1);
+    }
+
+    & input {
+        font-size: 14px;
+        height: 20px;
+        box-sizing: border-box;
+        padding: 4px 6px;
+        width: 0;
+        min-width: 30px;
+        flex-grow: 1;
+        border: 0;
+        margin: 0;
+        outline: 0;
+    }
 `;
 
 const Tag = styled(({ label, onDelete, ...props }) => (
@@ -57,40 +63,39 @@ const Tag = styled(({ label, onDelete, ...props }) => (
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 4px 6px 3px 7px;
-    /* height: 20px; */
-    /* background-color: #fafafa; */
-    background-color: #ffffff;
-    /* border: 1px solid #e8e8e8; */
-    /* border-radius: 4px; */
+    padding: 0px 6px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 7px;
     box-sizing: content-box;
-    /* padding: 0 4px 0 10px; */
     outline: 0;
     overflow: hidden;
     color: #2d2d2d;
-    /* background: #f0f0f0; */
     border-radius: 7px;
-    margin: 0 10px 10px 0;
     user-select: none;
-
-    /* &:hover {
-        border-color: #40a9ff;
-        background-color: #e6f7ff;
-    } */
 
     & span {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 12px;
+        letter-spacing: 0.01em;
     }
 
     & svg {
-        width: 20px;
-        height: 20px;
+        width: 10px;
+        height: 10px;
         /* font-size: 12px; */
         cursor: pointer;
-        padding: 4px;
+        margin-left: 8px;
         fill: #2d2d2d;
+        &:hover {
+            fill: #ff7c7c;
+        }
     }
 `;
 
@@ -303,7 +308,7 @@ interface IProps {
     options: Array<any>;
 }
 
-const UIAutocomplete: FC<IProps> = (props) => {
+const UITagField: FC<IProps> = (props) => {
     const { id, name, label, placeholder, options } = props;
     const [field, meta, helpers] = useField({ name });
     // const { value } = meta;
@@ -335,34 +340,15 @@ const UIAutocomplete: FC<IProps> = (props) => {
                     {label}
                 </UILabel>
             )}
-            <InputWrapper>
-                <IconWrapper className="input-icon">
-                    <ArrowIcon />
-                </IconWrapper>
-                <SInput
-                    placeholder={placeholder}
-                    type="text"
-                    id={id}
-                    name={name}
-                    value={'value'}
-                    {...getInputProps()}
-                />
-            </InputWrapper>
             <TagInputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''} count={value ? value.length : 0}>
                 {value.map((option: IOption, index: number) => (
                     <Tag label={option.label} {...getTagProps({ index })} />
                 ))}
-                {/* <input {...getInputProps()} /> */}
+                <input {...getInputProps()} />
             </TagInputWrapper>
+
             {meta.touched && meta.error ? <UIError>{meta.error}</UIError> : null}
             {groupedOptions.length > 0 ? (
-                // <ListWrapper {...getListboxProps()}>
-                //     <ListBox>
-                //         {groupedOptions.map((option, index) => (
-                //             <li {...getOptionProps({ option, index })}>{option.label}</li>
-                //         ))}
-                //     </ListBox>
-                // </ListWrapper>
                 <ListWrapper {...getListboxProps()}>
                     <ListBox>
                         {groupedOptions.map((option, index) => (
@@ -378,4 +364,4 @@ const UIAutocomplete: FC<IProps> = (props) => {
     );
 };
 
-export default UIAutocomplete;
+export default UITagField;
