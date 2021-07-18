@@ -27,7 +27,7 @@ const TagInputWrapper = styled('div')<any>`
     box-sizing: border-box;
     border-radius: 10px;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 0px;
     max-height: 168px;
     overflow: auto;
 
@@ -262,41 +262,6 @@ const InputWrapper = styled.div`
             border-color: rgba(94, 198, 157, 1); */
             border-color: #5ec69d;
         }
-    }
-`;
-
-const SInput = styled.input`
-    flex: 1;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid #e5e5e5;
-    padding: 8px 16px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    transition: border-color 0.3s linear, box-shadow 0.3s linear;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.01em;
-    color: #686868;
-
-    &::placeholder {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 32px;
-        display: flex;
-        align-items: center;
-        color: #a4a4a4;
-        opacity: 1;
-    }
-
-    :focus {
-        outline: none;
     }
 `;
 

@@ -12,6 +12,7 @@ import UIIconButton from '../core/UIIconButton';
 
 import { ReactComponent as PlusIcon } from '../../media/image/plus-icon.svg';
 import { ReactComponent as BinIcon } from '../../media/image/bin-icon.svg';
+import UITagField from './UITagField';
 
 const Wrapper = styled.div`
     display: flex;
@@ -73,50 +74,6 @@ const InnerCircle = styled.div<any>`
     /* background-color: ${(props) => props.fill}; */
     border-radius: 50%;
     transition: background-color 0.3s linear;
-`;
-
-const SButton = styled.button<any>`
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    background: ${(props) => props.fill};
-    border: none;
-    border-radius: 10px;
-    min-width: 130px;
-    height: 40px;
-    border: none;
-    transition: background-color 0.3s linear;
-    cursor: pointer;
-    padding: 4px 15px;
-    overflow: hidden;
-    width: 100%;
-
-    @media (max-width: ${Device.mobile}px) {
-        width: 100%;
-    }
-
-    &.selected {
-        & ${InnerCircle} {
-            background-color: ${(props) => props.fill};
-        }
-    }
-
-    :hover {
-        background-color: ${(props) => Color(props.fill).darken(0.1).toString()};
-        /* background-color: #7dd8b5; */
-    }
-`;
-
-const Label = styled.span`
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.01em;
-    color: #ffffff;
-    margin: 0px 0px;
 `;
 
 const SelectedCourseGroupWrapper = styled.div`
@@ -222,7 +179,7 @@ const CourseInputWrapper = styled.div`
     border: 1px solid #e5e5e5;
     box-sizing: border-box;
     border-radius: 15px;
-    margin: 10px 0px;
+    margin: 0px 0px;
 `;
 const CourseGroupWrapper = styled.div`
     display: flex;
@@ -232,6 +189,7 @@ const CourseGroupWrapper = styled.div`
     flex: none;
     flex-grow: 0;
     align-self: stretch;
+    margin: 0px;
 
     @media (max-width: ${Device.mobile}px) {
         flex-direction: column;
@@ -249,9 +207,10 @@ interface IProps {
     id: string;
     name: string;
     label: string;
+    options?: Array<any>;
 }
 
-const UICourseGroup: FC<IProps> = ({ id, name, label }) => {
+const UICourseGroup: FC<IProps> = ({ id, name, label, options }) => {
     const [list, setList] = useState([]);
     const [item, setItem] = useState({ major: '', course: '' });
     const [field, meta, helpers] = useField({ name });
@@ -310,6 +269,7 @@ const UICourseGroup: FC<IProps> = ({ id, name, label }) => {
                             value={item.major}
                             label="Major"
                             placeholder="Enter Major"
+                            style={{ marginBottom: 0 }}
                         />
                         <UISpacer width={10} height={1} />
                         <UITextField
@@ -319,8 +279,18 @@ const UICourseGroup: FC<IProps> = ({ id, name, label }) => {
                             value={item.course}
                             label="Course Number"
                             placeholder="Enter Course"
+                            style={{ marginBottom: 0 }}
                         />
                     </CourseGroupWrapper>
+                    {options && options.length && (
+                        <UITagField
+                            id="majors"
+                            name="majors"
+                            label="Tags"
+                            placeholder="Select major"
+                            options={options}
+                        />
+                    )}
                 </CourseInputWrapper>
 
                 <UIIconButton onClick={addItem}>

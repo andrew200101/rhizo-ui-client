@@ -21,6 +21,9 @@ import UILink from '../../ui-kit/core/UILink';
 import UIStaticField from '../../ui-kit/form/UIStaticField';
 import UIHint from '../../ui-kit/core/UIHint';
 import UITagField from '../../ui-kit/form/UITagField';
+import UICourseConfirmGroup from '../../ui-kit/form/UICourseConfirmGroup';
+import UICalendarGroup from '../../ui-kit/form/UICalendarGroup';
+import UIFileUpload from '../../ui-kit/form/UIFileUpload';
 
 const Title = styled.h4`
     display: flex;
@@ -216,6 +219,7 @@ const TutorProfilePage = (props) => {
                         <UIBox justifyContent="flex-end">
                             <UILink label="Register as a student only" />
                         </UIBox>
+
                         <UITextField
                             id="institution"
                             name="institution"
@@ -244,21 +248,25 @@ const TutorProfilePage = (props) => {
                             options={majorList}
                         />
 
-                        <UITagField
-                            id="majors"
-                            name="majors"
-                            label="Select major(s) currently attending"
-                            placeholder="Select major"
-                            options={majorList}
-                        />
-
                         <UICourseGroup
                             id="courseGroup"
                             name="courseGroup"
                             label="Input courses you are currently taking"
-                            // placeholder="Select major"
-                            // options={majorList}
+                            options={majorList}
                         />
+
+                        <UICourseConfirmGroup
+                            id="courseConfirmGroup"
+                            name="courseConfirmGroup"
+                            label="Select courses to confirm"
+                            desc="Input grade earned in the courses selected for verification"
+                            options={majorList.slice(0, 4)}
+                        />
+
+                        <UIFileUpload id="transcriptUpload" name="transcriptUpload" label="Upload transcript file" />
+
+                        <UICalendarGroup id="calendarGroup" name="calendarGroup" label="Connect calendar(s)" />
+
                         <UIBox direction="column">
                             <UIButton label="Continue" />
                         </UIBox>
