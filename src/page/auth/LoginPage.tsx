@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { FormikHelpers, useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
 import Page from '../common/Page';
 import UICard from '../../ui-kit/core/UICard';
 
@@ -17,6 +18,7 @@ import UIPasswordField from '../../ui-kit/form/UIPasswordField';
 import UIBox from '../../ui-kit/layout/UIBox';
 import AuthContentWrapper from '../../widget/AuthContentWrapper';
 import Presentation from '../../widget/Presentation';
+import { requestLogin } from '../../store/state/AuthState';
 
 const Title = styled.h4`
     display: flex;
@@ -66,6 +68,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginPage = (props) => {
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -73,9 +76,14 @@ const LoginPage = (props) => {
         },
         validationSchema: LoginSchema,
         onSubmit: (values: IPayload, { setSubmitting }: FormikHelpers<IPayload>) => {
+            console.log('values');
+            console.log(values);
+
+            dispatch(requestLogin(values));
+
             setTimeout(() => {
                 setSubmitting(false);
-            }, 500);
+            }, 5000);
         },
     });
     return (
@@ -107,7 +115,7 @@ const LoginPage = (props) => {
                             ></UIPasswordField>
                             <UICheckBox label="Keep me logged in" checked></UICheckBox>
 
-                            <UIButton label="Sign in" />
+                            <UIButton activity={true} label="Sign in" />
                             <LinkWrapper>
                                 <span>
                                     Don't have an account yet??{' '}
