@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import UILoader from './UILoader';
 
 const SButton = styled.button<Partial<IProps>>`
     position: relative;
@@ -13,7 +14,7 @@ const SButton = styled.button<Partial<IProps>>`
     min-width: 60px;
     height: 40px;
     border: none;
-    transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear, width 0.3s linear;
     cursor: pointer;
     padding: 4px 20px;
 
@@ -34,12 +35,14 @@ const Label = styled.span`
 
 interface IProps {
     label: string;
+    activity?: boolean;
     type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
-const UIButton: FC<IProps> = ({ label, type }) => {
+const UIButton: FC<IProps> = ({ label, type, activity }) => {
     return (
         <SButton type={type}>
+            {activity && <UILoader />}
             <Label>{label}</Label>
         </SButton>
     );

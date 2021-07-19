@@ -10,7 +10,6 @@ const InputWrapper = styled.div`
     position: relative;
     border: none;
     display: flex;
-    width: 100%;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
@@ -23,6 +22,10 @@ const InputWrapper = styled.div`
     /* border: 1px solid #e5e5e5; */
     box-sizing: border-box;
     border-radius: 10px;
+    flex: none;
+    flex-grow: 0;
+    align-self: stretch;
+    margin: 0px 0px 10px 0px;
 
     > input {
         &:focus {
@@ -136,15 +139,16 @@ interface IProps {
     onChange?: (e) => void;
     value?: string;
     autoComplete?: any;
+    style?: any;
 }
 
 const UITextField: FC<IProps> = (props) => {
-    const { id, name, label, icon, email, placeholder, onChange, value, autoComplete } = props;
+    const { id, name, label, icon, email, placeholder, onChange, value, autoComplete, style } = props;
     // const [field, meta, helpers] = useField(name);
     // eslint-disable-next-line no-unused-vars
     const [field, meta, helpers] = useField({ name });
     return (
-        <UIFormControl>
+        <UIFormControl style={style}>
             {label && <UILabel htmlFor={id}>{label}</UILabel>}
             <InputWrapper>
                 {icon && <IconWrapper className="input-icon">{icon}</IconWrapper>}

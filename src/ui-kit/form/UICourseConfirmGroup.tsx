@@ -2,6 +2,7 @@
 import { useField } from 'formik';
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import UICheckBox from './UICheckBox';
 import UIFormControl from './UIFormControl';
 import { UILabel } from './UILabel';
 
@@ -12,7 +13,7 @@ export const FieldWrapper = styled.div<any>`
     width: 100%;
     height: 40px;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     margin-right: 16px;
     /* margin-top: 16px; */
@@ -31,7 +32,32 @@ export const Text = styled.span`
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 0.01em;
+    color: #2d2d2d;
+    user-select: none;
+`;
+
+export const Title = styled.h4`
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #2d2d2d;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 3px 0px;
+    user-select: none;
+`;
+
+export const Desc = styled.span`
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.01em;
     color: #686868;
+    margin: 3px 0px 10px 0px;
     user-select: none;
 `;
 
@@ -39,26 +65,29 @@ interface IProps {
     id?: string;
     name: string;
     label?: string;
-    value: Array<string>;
+    desc?: string;
+    options: Array<any>;
 }
 
-const UIStaticField: FC<IProps> = (props) => {
-    const { id, name, label, value } = props;
+const UICourseConfirmGroup: FC<IProps> = (props) => {
+    const { id, name, label, options, desc } = props;
     // const [field, meta, helpers] = useField(name);
     const [field, meta, helpers] = useField({ name });
     return (
         <UIFormControl>
-            {label && <UILabel htmlFor={id}>{label}</UILabel>}
-            {value &&
-                value.map((x) => (
-                    <FieldWrapper key={`ui-static-fw-${x}`} count={value.length}>
-                        <Text>{x}</Text>
+            {label && <Title>{label}</Title>}
+            {desc && <Desc>{desc}</Desc>}
+            {options &&
+                options.map((x) => (
+                    <FieldWrapper key={`ui-static-fw-${x}`} count={options.length}>
+                        <Text>{x.label}</Text>
+                        <UICheckBox label="" checked />
                     </FieldWrapper>
                 ))}
         </UIFormControl>
     );
 };
 
-UIStaticField.defaultProps = {};
+UICourseConfirmGroup.defaultProps = {};
 
-export default UIStaticField;
+export default UICourseConfirmGroup;

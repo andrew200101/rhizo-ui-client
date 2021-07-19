@@ -6,6 +6,7 @@ import LoginPage from './page/auth/LoginPage';
 import SignUpPage from './page/auth/SignUpPage';
 import UserProfilePage from './page/profile/UserProfilePage';
 import StudentProfilePage from './page/profile/StudentProfilePage';
+import TutorProfilePage from './page/profile/TutorProfilePage';
 
 const App = () => {
     return (
@@ -30,6 +31,10 @@ const App = () => {
 
                     <Route exact path="/profile/student">
                         <StudentProfilePage />
+                    </Route>
+
+                    <Route exact path="/profile/tutor">
+                        <TutorProfilePage />
                     </Route>
 
                     <Route path="*">

@@ -15,10 +15,16 @@ export const Wrapper = styled.div`
 interface IProps {
     children: ReactNode;
     autoComplete?: any;
+    style?: any;
 }
 
-const UIFormControl: FC<IProps> = ({ children, autoComplete }) => {
-    return <Wrapper {...autoComplete}>{children}</Wrapper>;
+const UIFormControl: FC<IProps> = ({ children, autoComplete, style }) => {
+    return (
+        <Wrapper {...autoComplete} style={style}>
+            {' '}
+            {children}
+        </Wrapper>
+    );
 };
 
 UIFormControl.defaultProps = {

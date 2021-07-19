@@ -1,5 +1,5 @@
 export const Api = {
-    baseUrl: 'http://127.0.0.1:3000',
-    login: '/rest-auth/login',
-    signup: '/rest-auth/register',
+    baseUrl: 'http://ec2-15-223-39-9.ca-central-1.compute.amazonaws.com',
+    login: '/rest-auth/login/',
+    signup: '/rest-auth/register/',
 };
